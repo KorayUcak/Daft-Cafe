@@ -1,0 +1,77 @@
+<%- include('partials/header') %>
+
+<section class="menu-section" style="padding-top: 24px;">
+
+  <div class="section-header">
+    <h2>menümüz</h2>
+    <p>tüm lezzetler bir arada</p>
+    <div class="section-divider"></div>
+  </div>
+
+  <!-- Kategori Sekmeleri (Client-side filtreleme) -->
+  <div class="category-tabs">
+    <button class="category-tab active" data-filter="all">Tümü</button>
+    <button class="category-tab" data-filter="kahve">Kahve</button>
+    <button class="category-tab" data-filter="tatli">Tatlı</button>
+    <button class="category-tab" data-filter="soguk-icecek">Soğuk İçecek</button>
+  </div>
+
+  <!-- Ürün Kartları — Compact List -->
+  <div class="compact-menu-list">
+    <% urunler.forEach(function(urun, i) { %>
+      <%
+        let defaultImg = '/images/defaults/kahve-default.png';
+        if (urun.kategori === 'tatli') defaultImg = '/images/defaults/tatli-default.png';
+        if (urun.kategori === 'soguk-icecek') defaultImg = '/images/defaults/soguk-icecek-default.png';
+      %>
+      <a href="/menu/<%= urun.id %>" class="compact-list-item mix-item" data-category="<%= urun.kategori %>">
+        
+        <div class="compact-item-left">
+          <img src="<%= urun.imagePath || defaultImg %>" alt="<%= urun.isim %>" class="compact-item-thumb">
+          <div class="compact-item-info">
+            <span class="compact-item-title"><%= urun.isim %></span>
+            <span class="compact-item-price"><%= urun.fiyat %> ₺</span>
+          </div>
+        </div>
+
+        <div class="compact-item-right">
+          <span class="compact-item-desc"><%= urun.description || 'Baristalarımızın özel dokunuşlarıyla taze taze.' %></span>
+        </div>
+        
+      </a>
+    <% }) %>
+  </div>
+
+  <% if (urunler.length === 0) { %>
+    <div class="empty-msg">Bu kategoride henüz ürün bulunmamaktadır.</div>
+  <% } %>
+
+</section>
+
+<!-- Tab Filtreleme JavaScript -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.category-tab');
+    const items = document.querySelectorAll('.mix-item');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Tab aktifliği seçimi
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // Ürün filtreleme
+        const filterTarget = tab.getAttribute('data-filter');
+        items.forEach(item => {
+          if (filterTarget === 'all' || item.getAttribute('data-category') === filterTarget) {
+            item.style.display = 'flex';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,110 @@
+<%- include('../partials/header') %>
+
+<section class="admin-panel">
+
+  <!-- Header -->
+  <div class="admin-header">
+    <h1>admin paneli</h1>
+    <a href="/admin/cikis" class="btn btn-small btn-secondary">🔒 Çıkış</a>
+  </div>
+
+  <!-- Alerts -->
+  <% if (mesaj) { %>
+    <div class="alert alert-success">✅ <%= mesaj %></div>
+  <% } %>
+  <% if (hataMesaji) { %>
+    <div class="alert alert-danger">❌ <%= hataMesaji %></div>
+  <% } %>
+
+  <!-- İstatistikler -->
+  <div class="admin-stats">
+    <div class="stat-card">
+      <span class="stat-number"><%= urunler.length %></span>
+      <span class="stat-label">Toplam Ürün</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number"><%= kategoriler.length %></span>
+      <span class="stat-label">Kategori</span>
+    </div>
+  </div>
+
+  <!-- ===== YENİ ÜRÜN EKLE ===== -->
+  <div class="admin-form-card">
+    <h2 class="admin-form-title">+ yeni ürün ekle</h2>
+    <form action="/admin/ekle" method="POST" enctype="multipart/form-data">
+      <div class="admin-form-row">
+        <div class="form-group">
+          <label for="isim">Ürün Adı</label>
+          <input type="text" id="isim" name="isim" placeholder="Örn: Türk Kahvesi" required>
+        </div>
+        <div class="form-group">
+          <label for="kategori">Kategori</label>
+          <select id="kategori" name="kategori" required>
+            <option value="">Seçiniz...</option>
+            <option value="kahve">Kahve</option>
+            <option value="tatli">Tatlı</option>
+            <option value="soguk-icecek">Soğuk İçecek</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="fiyat">Fiyat (₺)</label>
+          <input type="number" id="fiyat" name="fiyat" step="0.01" min="0" placeholder="45.00" required>
+        </div>
+        <div class="form-group">
+          <label for="image">Fotoğraf</label>
+          <input type="file" id="image" name="image" accept="image/*">
+          <span class="form-help">Maks. 5MB — JPEG, PNG, GIF, WEBP</span>
+        </div>
+        <div class="form-group" style="grid-column: 1 / -1;">
+          <label for="description">Ürün İçeriği / Açıklama</label>
+          <textarea id="description" name="description" placeholder="Örn: %100 Arabica çekirdekleri, taze süt ve karamel şurubu." rows="2"></textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-full">Ürünü Ekle</button>
+    </form>
+  </div>
+
+  <!-- ===== ÜRÜN LİSTESİ (Kart tabanlı — tablo yerine) ===== -->
+  <% if (urunler.length === 0) { %>
+    <div class="empty-msg">Henüz ürün eklenmemiş.</div>
+  <% } else { %>
+    <div class="admin-products">
+      <% urunler.forEach(function(urun) { %>
+        <div class="admin-product-card">
+          <!-- Görsel -->
+          <% if (urun.imagePath) { %>
+            <img src="<%= urun.imagePath %>" alt="<%= urun.isim %>" class="admin-product-thumb">
+          <% } else { %>
+            <div class="admin-product-thumb-placeholder">📷</div>
+          <% } %>
+
+          <!-- Bilgi + İşlemler -->
+          <div class="admin-product-info">
+            <div class="admin-product-name"><%= urun.isim %></div>
+            <div class="admin-product-meta">
+              <span class="badge"><%= urun.kategori %></span>
+              <span class="admin-product-price"> · <%= urun.fiyat %> ₺</span>
+            </div>
+
+            <!-- Aksiyon butonları -->
+            <div class="admin-product-actions">
+              <!-- Hızlı fiyat güncelle -->
+              <form action="/admin/fiyat/<%= urun.id %>" method="POST" class="inline-price-form">
+                <input type="number" name="fiyat" step="0.01" min="0" value="<%= urun.fiyat %>" class="price-input" required>
+                <button type="submit" class="btn btn-small btn-secondary" title="Fiyatı Güncelle">✓</button>
+              </form>
+
+              <!-- Sil -->
+              <form action="/admin/sil/<%= urun.id %>" method="POST" onsubmit="return confirm('Bu ürünü silmek istediğinize emin misiniz?\n\nÜrün: <%= urun.isim %>')">
+                <button type="submit" class="btn btn-small btn-danger">🗑️ Sil</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+
+</section>
+
+<%- include('../partials/footer') %>

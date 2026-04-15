@@ -1,0 +1,90 @@
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-social">
+      <span class="social-text">Bizi Takip Edin</span>
+      <a href="https://www.instagram.com/daft.coffee/" target="_blank" rel="noopener noreferrer" class="social-icon"
+        aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+          stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+      </a>
+    </div>
+
+    <div class="footer-bottom">
+      <span class="footer-brand">&copy; <%= new Date().getFullYear() %> daft coffee</span>
+      <ul class="footer-links">
+        <li><a href="/">Ana Sayfa</a></li>
+        <li><a href="/menu">Menü</a></li>
+        <li><a href="/admin">Admin</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ──────────────────────────────────────────
+  // IntersectionObserver — scroll animasyonları
+  // ──────────────────────────────────────────
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('fade-in-up');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.menu-card, .kategori-section, .admin-product-card').forEach(el => {
+    el.style.opacity = '0';
+    obs.observe(el);
+  });
+
+  // ──────────────────────────────────────────
+  // 3D LED Tabela — Mousemove Tilt Efekti
+  // (Masaüstünde fare ile, mobilde yavaş dönüş)
+  // ──────────────────────────────────────────
+  (function () {
+    const sign = document.getElementById('ledSign');
+    const hero = document.getElementById('heroSection');
+    if (!sign || !hero) return;
+
+    const isMobile = window.matchMedia('(max-width: 959px)').matches;
+
+    if (isMobile) {
+      // Mobil — yavaş otomatik sallanma
+      let t = 0;
+      function mobileFloat() {
+        t += 0.008;
+        const rx = Math.sin(t) * 2;
+        const ry = Math.cos(t * 0.7) * 3;
+        sign.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+        requestAnimationFrame(mobileFloat);
+      }
+      mobileFloat();
+    } else {
+      // Masaüstü — fare takip tilt
+      hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const mx = e.clientX - cx;
+        const my = e.clientY - cy;
+        const rx = (my / rect.height) * -8;
+        const ry = (mx / rect.width) * 8;
+        sign.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+      });
+      hero.addEventListener('mouseleave', () => {
+        sign.style.transform = 'rotateX(0) rotateY(0)';
+      });
+    }
+  })();
+</script>
+
+</body>
+
+</html>

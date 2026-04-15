@@ -1,0 +1,28 @@
+<%- include('partials/header') %>
+
+<section class="urun-detay">
+  <div class="urun-detay-card">
+    <%
+      let defaultImg = '/images/defaults/kahve-default.png';
+      if (urun.kategori === 'tatli') defaultImg = '/images/defaults/tatli-default.png';
+      if (urun.kategori === 'soguk-icecek') defaultImg = '/images/defaults/soguk-icecek-default.png';
+    %>
+    <% if (urun.imagePath) { %>
+      <img src="<%= urun.imagePath %>" alt="<%= urun.isim %>" class="urun-detay-img">
+    <% } else { %>
+      <img src="<%= defaultImg %>" alt="<%= urun.isim %>" class="urun-detay-img">
+    <% } %>
+
+    <div class="urun-detay-bilgi">
+      <h1><%= urun.isim %></h1>
+      <span class="badge"><%= urun.kategori %></span>
+      <p class="fiyat-buyuk"><%= urun.fiyat %> ₺</p>
+
+      <div class="urun-islemler">
+        <a href="/menu" class="btn btn-outline-dark">← Menüye Dön</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

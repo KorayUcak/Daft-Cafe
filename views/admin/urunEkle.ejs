@@ -1,0 +1,40 @@
+<%- include('../partials/header') %>
+
+<section class="urun-ekle-form">
+  <h1>Yeni Ürün Ekle</h1>
+
+  <form action="/admin/ekle" method="POST" enctype="multipart/form-data" class="form">
+    <div class="form-group">
+      <label for="isim">Ürün Adı</label>
+      <input type="text" id="isim" name="isim" placeholder="Örn: Türk Kahvesi" required>
+    </div>
+
+    <div class="form-group">
+      <label for="kategori">Kategori</label>
+      <select id="kategori" name="kategori" required>
+        <option value="">Seçiniz...</option>
+        <option value="kahve">Kahve</option>
+        <option value="tatli">Tatlı</option>
+        <option value="soguk-icecek">Soğuk İçecek</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="fiyat">Fiyat (₺)</label>
+      <input type="number" id="fiyat" name="fiyat" step="0.01" min="0" placeholder="45.00" required>
+    </div>
+
+    <div class="form-group">
+      <label for="image">Ürün Görseli</label>
+      <input type="file" id="image" name="image" accept="image/*">
+      <small class="form-help">Maks. 5MB — JPEG, PNG, GIF, WEBP</small>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Ürünü Ekle</button>
+      <a href="/admin" class="btn btn-secondary">İptal</a>
+    </div>
+  </form>
+</section>
+
+<%- include('../partials/footer') %>

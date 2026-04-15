@@ -1,0 +1,45 @@
+<%- include('../partials/header') %>
+
+<section class="urun-ekle-form">
+  <h1>Ürünü Düzenle</h1>
+
+  <form action="/admin/duzenle/<%= urun.id %>" method="POST" enctype="multipart/form-data" class="form">
+    <div class="form-group">
+      <label for="isim">Ürün Adı</label>
+      <input type="text" id="isim" name="isim" value="<%= urun.isim %>" required>
+    </div>
+
+    <div class="form-group">
+      <label for="kategori">Kategori</label>
+      <select id="kategori" name="kategori" required>
+        <option value="kahve" <%= urun.kategori === 'kahve' ? 'selected' : '' %>>Kahve</option>
+        <option value="tatli" <%= urun.kategori === 'tatli' ? 'selected' : '' %>>Tatlı</option>
+        <option value="soguk-icecek" <%= urun.kategori === 'soguk-icecek' ? 'selected' : '' %>>Soğuk İçecek</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="fiyat">Fiyat (₺)</label>
+      <input type="number" id="fiyat" name="fiyat" step="0.01" min="0" value="<%= urun.fiyat %>" required>
+    </div>
+
+    <div class="form-group">
+      <label for="image">Ürün Görseli</label>
+      <% if (urun.imagePath) { %>
+        <div class="current-image">
+          <img src="<%= urun.imagePath %>" alt="<%= urun.isim %>" class="preview-img">
+          <small>Mevcut görsel. Yeni dosya yüklerseniz eski görsel silinir.</small>
+        </div>
+      <% } %>
+      <input type="file" id="image" name="image" accept="image/*">
+      <small class="form-help">Maks. 5MB — JPEG, PNG, GIF, WEBP</small>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Güncelle</button>
+      <a href="/admin" class="btn btn-secondary">İptal</a>
+    </div>
+  </form>
+</section>
+
+<%- include('../partials/footer') %>

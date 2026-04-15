@@ -1,0 +1,84 @@
+[
+  {
+    "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567801",
+    "isim": "Espresso",
+    "kategori": "kahve",
+    "fiyat": 44.9,
+    "imagePath": null,
+    "guncellemeTarihi": "2026-04-07T19:30:17.900Z"
+  },
+  {
+    "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567802",
+    "isim": "Cappuccino",
+    "kategori": "kahve",
+    "fiyat": 100,
+    "imagePath": null,
+    "guncellemeTarihi": "2026-04-09T06:31:17.887Z"
+  },
+  {
+    "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567803",
+    "isim": "Latte",
+    "kategori": "kahve",
+    "fiyat": 65,
+    "imagePath": null
+  },
+  {
+    "id": "b1b2c3d4-e5f6-7890-abcd-ef1234567801",
+    "isim": "Cheesecake",
+    "kategori": "tatli",
+    "fiyat": 200,
+    "imagePath": null,
+    "guncellemeTarihi": "2026-04-09T20:41:12.244Z"
+  },
+  {
+    "id": "b1b2c3d4-e5f6-7890-abcd-ef1234567802",
+    "isim": "Tiramisu",
+    "kategori": "tatli",
+    "fiyat": 85,
+    "imagePath": null
+  },
+  {
+    "id": "b1b2c3d4-e5f6-7890-abcd-ef1234567803",
+    "isim": "Brownie",
+    "kategori": "tatli",
+    "fiyat": 70,
+    "imagePath": null
+  },
+  {
+    "id": "c1b2c3d4-e5f6-7890-abcd-ef1234567801",
+    "isim": "Limonata",
+    "kategori": "soguk-icecek",
+    "fiyat": 50,
+    "imagePath": null
+  },
+  {
+    "id": "c1b2c3d4-e5f6-7890-abcd-ef1234567802",
+    "isim": "Ice Tea",
+    "kategori": "soguk-icecek",
+    "fiyat": 45,
+    "imagePath": null
+  },
+  {
+    "id": "c1b2c3d4-e5f6-7890-abcd-ef1234567803",
+    "isim": "Mojito (Alkolsüz)",
+    "kategori": "soguk-icecek",
+    "fiyat": 65,
+    "imagePath": null
+  },
+  {
+    "id": "26867aa6-3a28-4b66-9921-e02f2b11acec",
+    "isim": "Türk Kahvesi",
+    "kategori": "kahve",
+    "fiyat": 105,
+    "imagePath": "/uploads/urun-1775586946785-915122081.jpeg",
+    "olusturmaTarihi": "2026-04-07T18:35:46.798Z"
+  },
+  {
+    "id": "3e51cfcb-9022-4342-a044-7921a52eea69",
+    "isim": "turk kahvesi",
+    "kategori": "tatli",
+    "fiyat": 100,
+    "imagePath": null,
+    "olusturmaTarihi": "2026-04-09T06:31:32.350Z"
+  }
+]

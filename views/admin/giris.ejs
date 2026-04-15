@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+
+<section class="login-section">
+  <div class="login-card">
+
+    <div class="login-logo">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="52" height="52">
+        <path d="M24 6L4 22H10V40H38V22H44L24 6Z" stroke="#1A1A1A" stroke-width="1.8" fill="none"/>
+        <text x="24" y="33" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="8" font-weight="700" fill="#1A1A1A">daft</text>
+      </svg>
+    </div>
+
+    <h1>admin girişi</h1>
+    <p class="login-desc">Yönetici paneline erişmek için şifrenizi girin.</p>
+
+    <% if (hata) { %>
+      <div class="alert alert-danger"><%= hata %></div>
+    <% } %>
+
+    <form action="/admin/giris" method="POST" class="login-form">
+      <div class="form-group">
+        <label for="sifre">Şifre</label>
+        <input type="password" id="sifre" name="sifre" placeholder="••••••••" required autofocus>
+      </div>
+      <button type="submit" class="btn btn-primary btn-full">Giriş Yap</button>
+    </form>
+
+    <a href="/" class="login-back">← Ana Sayfaya Dön</a>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>
