@@ -1268,6 +1268,51 @@ main.container {
   padding: 24px 0 48px;
 }
 
+/* --- Admin Okunabilirlik Katmanı (İzole) --- */
+.admin-panel .stat-card,
+.admin-panel .admin-form-card,
+.admin-panel .admin-product-card,
+.admin-panel .alert {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  color: #333333;
+}
+
+.admin-panel .admin-header h1,
+.admin-panel .admin-form-title,
+.admin-panel .admin-product-name {
+  color: #1A1A1A;
+}
+
+.admin-panel .stat-number {
+  color: #1A2A40;
+}
+
+.admin-panel .stat-label,
+.admin-panel .admin-product-meta,
+.admin-panel .form-group label,
+.admin-panel .form-help {
+  color: #555555;
+}
+
+.admin-panel .price-input,
+.admin-panel .form-group input,
+.admin-panel .form-group select,
+.admin-panel .form-group textarea {
+  background: #FFFFFF;
+  color: #333333;
+  border-color: #D1D5DB;
+}
+
+.admin-panel .badge {
+  background: #F3F4F6;
+  color: #555555;
+  border-color: #D1D5DB;
+}
+
 .admin-header {
   display: flex;
   align-items: center;
@@ -1872,10 +1917,20 @@ main.container {
   }
 }
 
-/* Mobil Arka Plan Optimizasyonu */
+/* Mobil Arka Plan (varsayılan — mobile-first) */
 @media (max-width: 768px) {
   body::before {
+    background-image: url('/images/bg-mobile.jpg');
     background-size: contain;
+    background-position: center center;
+  }
+}
+
+/* Masaüstü Arka Plan */
+@media (min-width: 769px) {
+  body::before {
+    background-image: url('/images/bg-final-v2.jpg');
+    background-size: cover;
     background-position: center center;
   }
 }
