@@ -36,10 +36,10 @@ cp .env.example .env
 `.env` dosyasını açın ve değerleri güncelleyin:
 
 ```env
-PORT=3000
-NODE_ENV=development
-ADMIN_PASSWORD=daft2024        # Admin paneli şifresi
-SESSION_SECRET=gizli-anahtar   # Session şifreleme anahtarı
+PORT=
+NODE_ENV=
+ADMIN_PASSWORD=       # Admin paneli şifresi
+SESSION_SECRET=  # Session şifreleme anahtarı
 ```
 
 ### 4. Sunucuyu başlatın
