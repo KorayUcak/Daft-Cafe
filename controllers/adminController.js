@@ -8,6 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 const MenuModel = require('../models/menuModel');
+const CampaignModel = require('../models/campaignModel');
 
 const uploadsDir = path.join(__dirname, '..', 'public', 'uploads');
 
@@ -44,6 +45,7 @@ function fotografSil(imagePath) {
 exports.panel = (req, res) => {
   const urunler = MenuModel.getAll();
   const kategoriler = MenuModel.getKategoriler();
+  const kampanyalar = CampaignModel.getAll();
 
   const mesaj = req.query.mesaj || null;
   const hataMesaji = req.query.hata || null;
@@ -52,6 +54,7 @@ exports.panel = (req, res) => {
     title: 'Admin Paneli - Daft Coffee',
     urunler,
     kategoriler,
+    kampanyalar,
     mesaj,
     hataMesaji
   });
@@ -124,4 +127,38 @@ exports.urunSil = (req, res) => {
   }
 
   res.redirect('/admin?mesaj=Ürün başarıyla silindi!');
+};
+
+// ============================================================
+//  KAMPANYALAR (ADMİN)
+// ============================================================
+
+/**
+ * Yeni kampanya ekleme (POST).
+ */
+exports.kampanyaEkle = (req, res) => {
+  const { isim, description, fiyat } = req.body;
+  const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
+
+  const yeniKampanya = CampaignModel.create({ isim, description, fiyat, imagePath });
+  console.log(`🎉 Yeni kampanya eklendi: ${yeniKampanya.isim}`);
+
+  res.redirect('/admin?mesaj=Kampanya başarıyla eklendi!');
+};
+
+/**
+ * Kampanya silme (POST).
+ */
+exports.kampanyaSil = (req, res) => {
+  const silinenKampanya = CampaignModel.remove(req.params.id);
+
+  if (!silinenKampanya) {
+    return res.redirect('/admin?hata=Kampanya bulunamadı!');
+  }
+
+  if (silinenKampanya.imagePath) {
+    fotografSil(silinenKampanya.imagePath);
+  }
+
+  res.redirect('/admin?mesaj=Kampanya başarıyla silindi!');
 };

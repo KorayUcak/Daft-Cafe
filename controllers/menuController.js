@@ -20,6 +20,7 @@
 const fs = require('fs');
 const path = require('path');
 const MenuModel = require('../models/menuModel');
+const CampaignModel = require('../models/campaignModel');
 
 // Uploads klasörünün tam yolu
 const uploadsDir = path.join(__dirname, '..', 'public', 'uploads');
@@ -64,6 +65,7 @@ function fotoğrafSil(imagePath) {
  */
 exports.anaSayfa = (req, res) => {
   const tumUrunler = MenuModel.getAll();
+  const kampanyalar = CampaignModel.getAll();
 
   const kategoriler = {
     kahve: tumUrunler.filter(u => u.kategori === 'kahve'),
@@ -72,8 +74,10 @@ exports.anaSayfa = (req, res) => {
   };
 
   res.render('index', {
-    title: 'Daft Cafe',
-    kategoriler
+    title: 'Daft Coffee',
+    kategoriler,
+    urunler: tumUrunler,
+    kampanyalar
   });
 };
 

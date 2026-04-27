@@ -12,30 +12,73 @@
   <header class="site-header">
     <nav class="navbar">
 
-      <!-- LOGO -->
-      <a href="/" class="logo">
-        <div class="logo-icon">
-          <div class="logo-house">
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M24 6L4 22H10V40H38V22H44L24 6Z" stroke="#FFFFFF" stroke-width="1.8" fill="none"/>
-              <text x="24" y="33" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="8" font-weight="700" fill="#FFFFFF">daft</text>
-            </svg>
+      <!-- Brand Group (Left Side) -->
+      <div class="nav-brand-group" style="display: flex; align-items: center; gap: 20px;">
+        
+        <!-- Language Dropdown -->
+        <div class="lang-dropdown-wrapper">
+          <button class="lang-dropdown-toggle" id="langToggle">
+            <span id="currentLang">TR</span>
+            <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="lang-dropdown-menu" id="langMenu">
+            <span class="lang-opt active" data-lang="tr">TR</span>
+            <span class="lang-opt" data-lang="en">EN</span>
+            <span class="lang-opt" data-lang="es">ES</span>
+            <span class="lang-opt" data-lang="de">DE</span>
+            <span class="lang-opt" data-lang="ru">RU</span>
           </div>
         </div>
-        <div class="logo-text">
-          <span class="brand-daft">daft</span>
-          <span class="brand-coffee">coffee</span>
-        </div>
-      </a>
+      </div>
 
-      <!-- Nav — her zaman görünür yatay menü -->
+      <!-- Nav — Pure Text Editorial (No Hamburger) -->
       <ul class="nav-links">
-        <li><a href="/">Ana Sayfa</a></li>
-        <li><a href="/menu">Menü</a></li>
-        <li><a href="/admin">Admin</a></li>
+        <li><a href="#menu" data-i18n="nav.menu">Menü</a></li>
+        <li><a href="#about" data-i18n="nav.about">Hakkımızda</a></li>
       </ul>
 
     </nav>
   </header>
+
+  <!-- ===== PREMIUM MARQUEE TICKER ===== -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-track">
+      <span>daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;</span>
+      <span>daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;daft&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- Dropdown Toggle + Outside-Click-to-Close Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const wrapper = document.querySelector('.lang-dropdown-wrapper');
+      const toggle = document.getElementById('langToggle');
+      const label = document.getElementById('currentLang');
+      const opts = document.querySelectorAll('.lang-dropdown-menu .lang-opt');
+
+      // Toggle open/close on button click
+      if (toggle && wrapper) {
+        toggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          wrapper.classList.toggle('open');
+        });
+      }
+
+      // Auto-close on language selection
+      opts.forEach(opt => {
+        opt.addEventListener('click', () => {
+          if (label) label.textContent = opt.textContent;
+          if (wrapper) wrapper.classList.remove('open');
+        });
+      });
+
+      // Close on any outside click
+      document.addEventListener('click', (e) => {
+        if (wrapper && !wrapper.contains(e.target)) {
+          wrapper.classList.remove('open');
+        }
+      });
+    });
+  </script>
 
   <main class="container">

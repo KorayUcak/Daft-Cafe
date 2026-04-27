@@ -62,8 +62,9 @@
     "id": "c1b2c3d4-e5f6-7890-abcd-ef1234567803",
     "isim": "Mojito (Alkolsüz)",
     "kategori": "soguk-icecek",
-    "fiyat": 65,
-    "imagePath": null
+    "fiyat": 90,
+    "imagePath": null,
+    "guncellemeTarihi": "2026-04-15T16:32:32.283Z"
   },
   {
     "id": "26867aa6-3a28-4b66-9921-e02f2b11acec",
@@ -80,5 +81,14 @@
     "fiyat": 100,
     "imagePath": null,
     "olusturmaTarihi": "2026-04-09T06:31:32.350Z"
+  },
+  {
+    "id": "049c2adc-a5d9-4f75-b8f4-9824762271b5",
+    "isim": "türk kahvesi",
+    "kategori": "tatli",
+    "fiyat": 90,
+    "description": "kxkxkxkxkxk",
+    "imagePath": null,
+    "olusturmaTarihi": "2026-04-15T16:32:17.240Z"
   }
 ]

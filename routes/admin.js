@@ -44,4 +44,14 @@ router.post('/guncelle/:id', adminAuth, upload.single('image'), adminController.
 // Ürün silme (POST)
 router.post('/sil/:id', adminAuth, adminController.urunSil);
 
+// ============================================================
+//  KAMPANYA ROTALARI
+// ============================================================
+
+// Yeni kampanya ekleme (POST + multer)
+router.post('/kampanya/ekle', adminAuth, upload.single('image'), adminController.kampanyaEkle);
+
+// Kampanya silme (POST)
+router.post('/kampanya/sil/:id', adminAuth, adminController.kampanyaSil);
+
 module.exports = router;

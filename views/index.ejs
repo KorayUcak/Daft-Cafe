@@ -1,85 +1,272 @@
 <%- include('partials/header') %>
 
-<!-- ===== HERO — AYDINLIK 3D LED TABELA ===== -->
-<section class="hero-artisan" id="heroSection">
-  <div class="led-prism-wrapper" id="ledSign">
-    <div class="led-prism">
+<!-- ===== INTRO OVERLAY — Premium Giriş Animasyonu ===== -->
+<div id="intro-overlay">
+  <img src="/images/daft-logo.png" alt="Daft Logo" class="intro-logo">
+</div>
 
-      <!-- ÖN YÜZ (front) — ana logo & LED glow -->
-      <div class="led-prism-face led-face-front">
-        <div class="led-text-wrapper">
-          <div class="led-text">
-            <span class="led-daft">daft</span>
-            <span class="led-coffee">coffee</span>
-          </div>
-        </div>
-        <div class="led-divider"></div>
-        <div class="led-icon-wrapper">
-          <div class="led-icon">
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M24 6L4 22H10V40H38V22H44L24 6Z" stroke="#FFFFFF" stroke-width="1.5" fill="none"/>
-            </svg>
-            <span class="led-icon-text">daft</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- ARKA YÜZ (back) -->
-      <div class="led-prism-face led-face-back">
-        <span class="led-back-text">daft coffee</span>
-      </div>
-
-      <!-- ÜST YÜZ (top) -->
-      <div class="led-prism-face led-face-top"></div>
-
-      <!-- ALT YÜZ (bottom) -->
-      <div class="led-prism-face led-face-bottom"></div>
-
-      <!-- SOL YÜZ (left) -->
-      <div class="led-prism-face led-face-left"></div>
-
-      <!-- SAĞ YÜZ (right) -->
-      <div class="led-prism-face led-face-right"></div>
-
-    </div>
-  </div>
-
-
+<!-- ===== HERO — Elite Open Layout ===== -->
+<section class="hero-artisan" id="hero">
+  <img src="/images/daft-logo.png" alt="Daft Coffee" class="hero-logo-elite">
 </section>
 
 <!-- ===== KAMPANYALAR ===== -->
-<section class="campaign-section fade-in-up">
-  <h2>Kampanyalar</h2>
-  <div class="campaign-card">
-    <h3>Çok yakında...</h3>
-    <p>Size özel fırsatlar burada olacak.</p>
+<section class="campaign-section">
+  <div class="spa-section-header reveal">
+    <h2 data-i18n="campaigns.title">Kampanyalar</h2>
+    <div class="spa-section-rule"></div>
   </div>
+
+  <% if (locals.kampanyalar && locals.kampanyalar.length > 0) { %>
+    <div class="compact-menu-list">
+      <% locals.kampanyalar.slice(0, 3).forEach(function(kampanya) { %>
+        <div class="menu-item-row reveal">
+          <div class="menu-item-header open-modal-link" data-name="<%= kampanya.isim %>" data-price="<%= kampanya.fiyat %>" data-category="kampanya" data-img="">
+            <span class="menu-item-name"><%= kampanya.isim %></span>
+            <span class="menu-item-dots"></span>
+            <span class="menu-item-price"><%= kampanya.fiyat %> ₺</span>
+          </div>
+          <p class="menu-item-desc"><%= kampanya.description %></p>
+        </div>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <div class="compact-menu-list">
+      <div class="menu-item-row reveal">
+        <div class="menu-item-header">
+          <span class="menu-item-name" data-i18n="campaigns.soon">Çok yakında...</span>
+        </div>
+        <p class="menu-item-desc" data-i18n="campaigns.desc">Size özel fırsatlar burada olacak.</p>
+      </div>
+    </div>
+  <% } %>
 </section>
 
 <!-- ===== İMZA LEZZETLERİMİZ ===== -->
-<section class="signature-section fade-in-up">
-  <h2>İmza Lezzetlerimiz</h2>
-  <div class="signature-grid">
-    
-    <a href="/menu" class="signature-card">
-      <img src="/images/defaults/kahve-default.png" alt="Daft Filtre" class="signature-thumb">
-      <h3>Daft Filtre</h3>
-      <p>Özenle kavrulmuş spesiyal çekirdeklerden, yumuşak içimli efsanevi klasiğimiz.</p>
-    </a>
+<section class="signature-section">
+  <div class="spa-section-header reveal">
+    <h2 data-i18n="signature.title">İmza Lezzetlerimiz</h2>
+    <div class="spa-section-rule"></div>
+  </div>
 
-    <a href="/menu" class="signature-card">
-      <img src="/images/defaults/tatli-default.png" alt="San Sebastian" class="signature-thumb">
-      <h3>San Sebastian</h3>
-      <p>Dışı hafif karamelize, içi akışkan krem peynir rüyası; kahvenin en iyi dostu.</p>
-    </a>
+  <div class="compact-menu-list">
+    <div class="menu-item-row reveal">
+      <div class="menu-item-header open-modal-link" data-name="Daft Filtre" data-price="" data-category="kahve" data-img="">
+        <span class="menu-item-name" data-i18n="signature.filter.name">Daft Filtre</span>
+      </div>
+      <p class="menu-item-desc" data-i18n="signature.filter.desc">Özenle kavrulmuş spesiyal çekirdeklerden, yumuşak içimli efsanevi klasiğimiz.</p>
+    </div>
 
-    <a href="/menu" class="signature-card">
-      <img src="/images/defaults/soguk-icecek-default.png" alt="Daft Cold Brew" class="signature-thumb">
-      <h3>Daft Cold Brew</h3>
-      <p>18 saat soğuk suda demlenmiş, asiditesi düşük, buz gibi güçlü bir enerji kaynağı.</p>
-    </a>
+    <div class="menu-item-row reveal">
+      <div class="menu-item-header open-modal-link" data-name="San Sebastian" data-price="" data-category="tatli" data-img="">
+        <span class="menu-item-name" data-i18n="signature.cheesecake.name">San Sebastian</span>
+      </div>
+      <p class="menu-item-desc" data-i18n="signature.cheesecake.desc">Dışı hafif karamelize, içi akışkan krem peynir rüyası; kahvenin en iyi dostu.</p>
+    </div>
 
+    <div class="menu-item-row reveal">
+      <div class="menu-item-header open-modal-link" data-name="Daft Cold Brew" data-price="" data-category="soguk-icecek" data-img="">
+        <span class="menu-item-name" data-i18n="signature.coldbrew.name">Daft Cold Brew</span>
+      </div>
+      <p class="menu-item-desc" data-i18n="signature.coldbrew.desc">18 saat soğuk suda demlenmiş, asiditesi düşük, buz gibi güçlü bir enerji kaynağı.</p>
+    </div>
   </div>
 </section>
+
+<!-- ===== MENÜ (SPA Section) ===== -->
+<section id="menu" class="spa-section">
+
+  <div class="spa-section-header reveal">
+    <h2 data-i18n="menu.title">Menü</h2>
+    <p data-i18n="menu.subtitle">tüm lezzetler bir arada</p>
+    <div class="spa-section-rule"></div>
+  </div>
+
+  <!-- Kategori Sekmeleri (Client-side filtreleme) -->
+  <div class="category-tabs">
+    <button class="category-tab active" data-filter="all" data-i18n="menu.filter.all">Tümü</button>
+    <button class="category-tab" data-filter="kahve" data-i18n="menu.filter.coffee">Kahve</button>
+    <button class="category-tab" data-filter="tatli" data-i18n="menu.filter.dessert">Tatlı</button>
+    <button class="category-tab" data-filter="soguk-icecek" data-i18n="menu.filter.cold">Soğuk İçecek</button>
+  </div>
+
+  <!-- Ürün Listesi — Boutique Text-Focused -->
+  <div class="compact-menu-list">
+    <% urunler.forEach(function(urun, i) { %>
+      <%
+        let defaultImg = '/images/defaults/kahve-default.webp';
+        if (urun.kategori === 'tatli') defaultImg = '/images/defaults/tatli-default.webp';
+        if (urun.kategori === 'soguk-icecek') defaultImg = '/images/defaults/soguk-icecek-default.webp';
+      %>
+      <div class="menu-item-row mix-item reveal" data-category="<%= urun.kategori %>">
+        <div class="menu-item-header" data-toggle="detail-<%= urun.id %>">
+          <span class="menu-item-name"><%= urun.isim %></span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price"><%= urun.fiyat %> ₺</span>
+        </div>
+        <button class="menu-item-toggle" data-toggle="detail-<%= urun.id %>" data-i18n="menu.detail">Detaylı Bilgi</button>
+        <div class="menu-item-detail" id="detail-<%= urun.id %>">
+          <div class="menu-item-detail-inner">
+            <div>
+              <p class="menu-item-detail-text"><%= urun.description || 'Baristalarımızın özel dokunuşlarıyla taze taze.' %></p>
+              <a href="#" class="menu-item-detail-link open-modal-link" data-i18n="menu.viewdetail" data-id="<%= urun.id %>" data-name="<%= urun.isim %>" data-img="<%= urun.imagePath || defaultImg %>" data-category="<%= urun.kategori %>" data-price="<%= urun.fiyat %>">Ürünü İncele →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+
+  <% if (urunler.length === 0) { %>
+    <div class="empty-msg" data-i18n="menu.empty">Bu kategoride henüz ürün bulunmamaktadır.</div>
+  <% } %>
+
+</section>
+
+<!-- ===== HAKKIMIZDA (SPA Section) ===== -->
+<section id="about" class="spa-section">
+
+  <div class="spa-section-header reveal">
+    <h2 data-i18n="about.title">Hakkımızda</h2>
+    <p data-i18n="about.subtitle">daft coffee hikayesi</p>
+    <div class="spa-section-rule"></div>
+  </div>
+
+  <div class="about-content reveal">
+    <p data-i18n="about.text">
+      Daft Coffee, kahve kültürüne tutkuyla bağlı bir ekibin elinden doğdu.
+      Her fincanda özenle seçilmiş çekirdeklerin, ustaca kavrulmuş aromaların
+      ve samimi bir atmosferin buluştuğu bir deneyim sunuyoruz.
+      Sadeliğin zarafetini ve lezzetin derinliğini bir arada yaşatmak
+      için buradayız.
+    </p>
+  </div>
+
+</section>
+
+<!-- ===== PRODUCT MODAL OVERLAY ===== -->
+<div id="product-modal" class="product-modal-overlay">
+  <div class="urun-detay-card">
+    <button id="close-modal-btn" class="modal-close-btn">&times;</button>
+    <img id="modal-img" src="" alt="" class="urun-detay-img">
+    <div class="urun-detay-bilgi">
+      <h1 id="modal-title"></h1>
+      <span id="modal-category" class="badge"></span>
+      <p id="modal-price" class="fiyat-buyuk"></p>
+      <div class="urun-islemler">
+        <button id="modal-return-btn" class="btn btn-outline-dark">← Menüye Dön</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tab Filtreleme, Accordion & Intro Cleanup JavaScript -->
+<script defer>
+  document.addEventListener('DOMContentLoaded', () => {
+    // ── Intro overlay — skip on click/tap ──
+    const overlay = document.getElementById('intro-overlay');
+    if (overlay) {
+      overlay.style.pointerEvents = 'auto';
+      overlay.style.cursor = 'pointer';
+
+      const skipIntro = () => {
+        if (overlay.classList.contains('skip')) return;
+        overlay.classList.add('skip');
+        overlay.addEventListener('transitionend', () => overlay.remove(), { once: true });
+        setTimeout(() => { if (overlay.parentNode) overlay.remove(); }, 600);
+      };
+
+      overlay.addEventListener('click', skipIntro);
+      overlay.addEventListener('touchstart', skipIntro, { passive: true });
+
+      // Normal animation end
+      overlay.addEventListener('animationend', (e) => {
+        if (e.animationName === 'introFadeOut') overlay.remove();
+      });
+    }
+
+    // ── Kategori Tab Filtreleme ──
+    const tabs = document.querySelectorAll('.category-tab');
+    const items = document.querySelectorAll('.mix-item');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const filterTarget = tab.getAttribute('data-filter');
+        items.forEach(item => {
+          if (filterTarget === 'all' || item.getAttribute('data-category') === filterTarget) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // ── Unified Product Modal Logic ──
+    const modal = document.getElementById('product-modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalTitle = document.getElementById('modal-title');
+    const modalCategory = document.getElementById('modal-category');
+    const modalPrice = document.getElementById('modal-price');
+    const returnBtn = document.getElementById('modal-return-btn');
+    const closeBtn = document.getElementById('close-modal-btn');
+
+    // Single handler for ALL open-modal-link elements (menu, campaigns, signatures)
+    document.querySelectorAll('.open-modal-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const img = link.getAttribute('data-img');
+        const name = link.getAttribute('data-name');
+        const category = link.getAttribute('data-category');
+        const price = link.getAttribute('data-price');
+
+        if (modalImg) {
+          if (img) { modalImg.src = img; modalImg.alt = name; modalImg.style.display = ''; }
+          else { modalImg.src = ''; modalImg.style.display = 'none'; }
+        }
+        if (modalTitle) modalTitle.textContent = name || '';
+        if (modalCategory) modalCategory.textContent = category || '';
+        if (modalPrice) modalPrice.textContent = price ? price + ' ₺' : '';
+
+        if (modal) modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    const closeModal = (e) => {
+      if (e) e.preventDefault();
+      if (modal) modal.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+
+    if (returnBtn) returnBtn.addEventListener('click', closeModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+    }
+
+    // ── Accordion: Detaylı Bilgi toggle ──
+    document.querySelectorAll('[data-toggle]').forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = trigger.getAttribute('data-toggle');
+        const detail = document.getElementById(targetId);
+        if (!detail) return;
+
+        // Close all other open panels
+        document.querySelectorAll('.menu-item-detail.open').forEach(d => {
+          if (d !== detail) d.classList.remove('open');
+        });
+
+        detail.classList.toggle('open');
+      });
+    });
+  });
+</script>
 
 <%- include('partials/footer') %>
